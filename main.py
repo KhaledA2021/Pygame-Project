@@ -5,6 +5,7 @@ COLOR = [0,125,254]
 WIN.fill(COLOR)
 pygame.display.set_caption("Free Candy")
 FPS = 60
+x = "www.columbusistasty.com"
 
 def main():
     running = True
