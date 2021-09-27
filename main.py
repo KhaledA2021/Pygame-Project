@@ -1,28 +1,38 @@
 import pygame
 
 WIN = pygame.display.set_mode((800, 600))
-COLOR = [0,125,254]
-WIN.fill(COLOR)
+BACKGROUNDCOLOR = [0,0,0]
+WIN.fill(BACKGROUNDCOLOR)
 pygame.display.set_caption("Free Candy")
 FPS = 60
-x = "www.columbusistasty.com"
+
+def moveplayer(keys):
+    if keys[pygame.K_UP] or keys[pygame.K_w]:
+        return 0, 10
+    else:
+        return 0, 0
+
 
 def main():
+    Playersprite = pygame.image.load("Heart Placeholder.PNG")
+
+    WIN.blit(Playersprite, (800,600))
     running = True
     frames = pygame.time.Clock()
+
+
     while running:
         frames.tick(FPS)
-        COLOR[0] += 1
-        COLOR[1] += 1
-        COLOR[2] += 1
-        if COLOR[0] == 255:
-            COLOR[0] = 0
-        if COLOR[1] == 255:
-            COLOR[1] = 0
-        if COLOR[2] == 255:
-            COLOR[2] =0
-        WIN.fill(COLOR)
         print(frames)
+
+        x_change = 0
+        y_change = 0
+
+        WIN.fill(BACKGROUNDCOLOR)
+        WIN.blit(Playersprite, (400, 300))
+
+        KEYS = pygame.key.get_pressed()
+        x_change , y_change = moveplayer(KEYS)
         for events in pygame.event.get():
             if events.type == pygame.QUIT:
                 running = False
