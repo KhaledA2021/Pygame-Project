@@ -56,19 +56,30 @@ def track_player_buttons(keys):
         return 0, 0
 
 
-
-
-
 def move_player(x, y, current_pos):
     current_pos = (current_pos[0] + x, current_pos[1] + y)
+    if current_pos[0] == 0:
+        current_pos = (current_pos[0] + 5, current_pos[1])
+    if current_pos[0] == 800:
+        current_pos = (current_pos[0] + -5, current_pos[1])
+    if current_pos[1] == 0:
+        current_pos = (current_pos[0], current_pos[1] + 5)
+    if current_pos[1] == 600:
+        current_pos = (current_pos[0], current_pos[1] + -5)
     return current_pos
+
+
+def rotate(Rotation, Direction):
+    Rotation =+ Direction
+    return Rotation
 
 
 def main():
 #    background_music = pygame.mixer.music.load("BIG_SHOT.mp3")
-    Playersprite = pygame.image.load("Heart_Placeholder.PNG")
+    Playersprite = pygame.image.load("ProjectPSprite.PNG")
     Playersprite = pygame.transform.scale(Playersprite, (20, 20))
     current_pos = (400, 300)
+    Rotation = 0
     WIN.blit(Playersprite, current_pos)
 #    pygame.mixer.music.play(1)
 
@@ -88,8 +99,11 @@ def main():
         x_change , y_change = track_player_buttons(KEYS)
         current_pos = move_player(x_change, y_change, current_pos)
 
+
         WIN.fill(BACKGROUNDCOLOR)
+        Playersprite = pygame.transform.rotate(Playersprite, Rotation)
         WIN.blit(Playersprite, current_pos)
+
 
 
         for events in pygame.event.get():
