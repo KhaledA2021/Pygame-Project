@@ -7,7 +7,7 @@ WIN.fill(BACKGROUNDCOLOR)
 pygame.display.set_caption("Free Candy")
 FPS = 60
 
-MOOSIC = pygame.mixer.Sound("Stratales - Spaghetti On The Side.WAV")
+MOOSIC = pygame.mixer.Sound("Creatures-Ov-Deception-_Jsab-Instrumental-Edit_.WAV")
 MOOSIC.play(-1)
 
 def track_player_buttons(keys):
@@ -74,7 +74,7 @@ def move_player(x, y, current_pos):
 def main():
 #    background_music = pygame.mixer.music.load("BIG_SHOT.mp3")
     Playersprite = pygame.image.load("ProjectPSprite.PNG")
-    Playersprite = pygame.transform.scale(Playersprite, (10, 10))
+    Playersprite = pygame.transform.scale(Playersprite, (15, 15))
     current_pos = (400, 300)
     Rotation = 0
     WIN.blit(Playersprite, current_pos)
