@@ -1,4 +1,4 @@
-import pygame
+'''import pygame
 
 class Player():
 
@@ -128,4 +128,4 @@ class Player():
 
 
         redraw_screen(BACKGROUNDCOLOR, Playersprite, Rotation, current_pos, Playerhealth, health_rotate, health_pos)
-
+'''

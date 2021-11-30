@@ -1,4 +1,4 @@
-import pygame
+'''import pygame
 import time
 import player
 
@@ -48,3 +48,4 @@ def main():
 
 if __name__ == "__main__":
       main()
+'''
