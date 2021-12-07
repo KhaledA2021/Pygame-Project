@@ -1,6 +1,10 @@
 import pygame
 
+
+
 class player:
+
+
     def __init__(self):
         self.reset_player()
 
@@ -12,12 +16,17 @@ class player:
         return self.hitbox
     def get_health(self):
         return self.health
+    def sprite(self):
+        return self.Player_Sprite
 
     def reset_player(self):
         self.pos = (500, 300)
         self.rotate = 0
         self.hitbox = True
         self.health = 3
+        self.Player_Sprite = pygame.image.load("ProjectPSprite.PNG")
+        self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
+
 
     def track_player_buttons(self, keys):
         if keys[pygame.K_UP] or keys[pygame.K_w]:
@@ -67,14 +76,15 @@ class player:
 
 
 
-    def update_values(self, x_change, y_change, rotation:
+    def update_values(self, x_change, y_change, rotation):
         self.pos = (self.pos[0] + x_change, self.pos[1] + y_change)
         if self.pos[0] < 0:
             self.pos = (0, self.pos[1])
-        elif self.pos[0] > 1000:
-            self.pos = (1000, self.pos[1])
+        elif self.pos[0] > 985:
+            self.pos = (985, self.pos[1])
         if self.pos[1] < 0:
             self.pos = (self.pos[0], 0)
-        elif self.pos[1] > 600:
-            self.pos = (self.pos[0], 600)
+        elif self.pos[1] > 585:
+            self.pos = (self.pos[0], 585)
         self.rotate = rotation
+

@@ -10,10 +10,19 @@ FPS = 60
 
 player = test_player.player()
 
+MOOSIC = pygame.mixer.Sound("Creatures-Ov-Deception-_Jsab-Instrumental-Edit_.WAV")
+MOOSIC.play(-1)
+
+
 
 def main():
     running = True
     frames = pygame.time.Clock()
+    def blit_sprites(sprite, sprite_pos, sprite_rot):
+        sprite = pygame.transform.rotate(sprite, sprite_rot)
+        WIN.fill(BACKGROUNDCOLOR)
+        WIN.blit(sprite, sprite_pos)
+
 
     while running:
         frames.tick(FPS)
@@ -21,6 +30,7 @@ def main():
         KEYS = pygame.key.get_pressed()
         player.track_player_buttons(KEYS)
         print(player.get_pos())
+        blit_sprites(player.sprite(), player.get_pos(), player.get_rotate())
 
         for events in pygame.event.get():
             if events.type == pygame.QUIT:
