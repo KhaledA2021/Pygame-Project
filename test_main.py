@@ -1,5 +1,6 @@
 import pygame
 import test_player
+import timer
 
 pygame.init()
 WIN = pygame.display.set_mode((1000, 600))
@@ -29,8 +30,11 @@ def main():
 
         KEYS = pygame.key.get_pressed()
         player.track_player_buttons(KEYS)
-        print(player.get_pos())
-        blit_sprites(player.sprite(), player.get_pos(), player.get_rotate())
+        KEYS = pygame.key.get_pressed()
+        player.collision_check(KEYS)
+        print(player.get_health())
+        player.reduce_timers()
+        blit_sprites(player.get_sprite(), player.get_pos(), player.get_rotate())
 
         for events in pygame.event.get():
             if events.type == pygame.QUIT:
