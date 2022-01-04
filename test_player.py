@@ -17,16 +17,19 @@ class player:
         return self.health
     def get_sprite(self):
         return self.Player_Sprite
+    def is_reset(self):
+        return self.player_reset
 
     def reset_player(self):
+        self.player_reset = True
         self.pos = (500,300)
         self.rotate = 0
         self.hitbox = (True, (10,10))
         self.health = 8
         self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite.PNG")
         self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15,15))
-        self.test_timer = timer.timer()
-        self.test_timer.set_new_time(360)
+        self.dash_timer = timer.timer()
+
 
 
     def track_player_buttons(self, keys):
@@ -91,8 +94,6 @@ class player:
         else:
             self.update_values(0, 0, 0)
 
-
-
     def update_values(self, x_change, y_change, rotation):
         self.pos = (self.pos[0] + x_change, self.pos[1] + y_change)
         if self.pos[0] < 0:
@@ -108,42 +109,54 @@ class player:
     def collision_check(self, keys):
         if self.hitbox[0] == True:
             if keys[pygame.K_k]:
-                if self.health == 8:
-                    self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite1H.PNG")
-                    self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
-                    self.health -= 1
-                elif self.health == 7:
-                    self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite2H.PNG")
-                    self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
-                    self.health -= 1
-                elif self.health == 6:
-                    self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite3H.PNG")
-                    self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
-                    self.health -= 1
-                elif self.health == 5:
-                    self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite4H.PNG")
-                    self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
-                    self.health -= 1
-                elif self. health == 4:
-                    self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite5H.PNG")
-                    self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
-                    self.health -= 1
-                elif self.health == 3:
-                    self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite6H.PNG")
-                    self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
-                    self.health -= 1
-                elif self.health == 2:
-                    self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite7H.PNG")
-                    self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
-                    self.health -= 1
-                elif self.health == 1:
-                    self.reset_player()
+                if self.dash_timer.remaining_time <= 0 or self.dash_timer.remaining_time == None:
+                    if self.health == 8:
+                        self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite1H.PNG")
+                        self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
+                        self.health -= 1
+                        self.dash_timer.set_new_time(120)
+                    elif self.health == 7:
+                        self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite2H.PNG")
+                        self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
+                        self.health -= 1
+                        self.dash_timer.set_new_time(120)
+                    elif self.health == 6:
+                        self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite3H.PNG")
+                        self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
+                        self.health -= 1
+                        self.dash_timer.set_new_time(120)
+                    elif self.health == 5:
+                        self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite4H.PNG")
+                        self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
+                        self.health -= 1
+                        self.dash_timer.set_new_time(120)
+                    elif self. health == 4:
+                        self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite5H.PNG")
+                        self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
+                        self.health -= 1
+                        self.dash_timer.set_new_time(120)
+                    elif self.health == 3:
+                        self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite6H.PNG")
+                        self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
+                        self.health -= 1
+                        self.dash_timer.set_new_time(120)
+                    elif self.health == 2:
+                        self.Player_Sprite = pygame.image.load("Sprites/ProjectPSprite7H.PNG")
+                        self.Player_Sprite = pygame.transform.scale(self.Player_Sprite, (15, 15))
+                        self.health -= 1
+                        self.dash_timer.set_new_time(120)
+                    elif self.health == 1:
+                        self.reset_player()
+                        self.dash_timer.set_new_time(120)
 
 
 
 
     def reduce_timers(self):
-        self.test_timer.count_down()
-        if self.timer.get_current_time == True:
-            print("timer DONE")
+        if self.dash_timer.count_down() == True:
+            print("Test Timer Done")
+        print(self.dash_timer.remaining_time)
+
+
+
 
