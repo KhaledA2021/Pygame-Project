@@ -37,86 +37,88 @@ class player:
             if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                 if keys[pygame.K_x]:
                     self.update_values(2.5, -2.5, 45)
-                elif keys[pygame.K_SPACE]:
-                    if self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0:
-                        self.update_values(15, -15, 45)
-                        self.dash_length_timer.set_new_time(.5)
+                elif keys[pygame.K_SPACE] and (self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0):
+                    self.dash_length_timer.set_new_time(.5)
+                    self.update_values(15, -15, 45)
+
                 else:
                     self.update_values(5, -5, 45)
             elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 if keys[pygame.K_x]:
                     self.update_values(-2.5, -2.5, 315)
-                elif keys[pygame.K_SPACE]:
-                    if self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0:
-                        self.update_values(-15, -15, 315)
-                        self.dash_length_timer.set_new_time(.5)
+                elif keys[pygame.K_SPACE] and (self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0):
+                    self.dash_length_timer.set_new_time(.5)
+                    self.update_values(-15, -15, 315)
+
                 else:
                     self.update_values(-5, -5, 315)
             else:
                 if keys[pygame.K_x]:
                     self.update_values(0, -2.5, 0)
-                elif keys[pygame.K_SPACE]:
-                    if self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0:
-                        self.update_values(0, -15, 0)
-                        self.dash_length_timer.set_new_time(.5)
+                elif keys[pygame.K_SPACE] and (self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0):
+                    self.dash_length_timer.set_new_time(.5)
+                    self.update_values(0, -15, 0)
+
                 else:
                     self.update_values(0, -5, 0)
         elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
             if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                 if keys[pygame.K_x]:
                     self.update_values(2.5, 2.5, 135)
-                elif keys[pygame.K_SPACE]:
-                    if self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0:
-                        self.update_values(15, 15, 135)
-                        self.dash_length_timer.set_new_time(.5)
+                elif keys[pygame.K_SPACE] and (self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0):
+                    self.dash_length_timer.set_new_time(.5)
+                    self.update_values(15, 15, 135)
+
                 else:
                     self.update_values(5, 5, 135)
             elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 if keys[pygame.K_x]:
                     self.update_values(-2.5, 2.5, 225)
-                elif keys[pygame.K_SPACE]:
-                    if self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0:
-                        self.update_values(-15, 15, 225)
-                        self.dash_length_timer.set_new_time(.5)
+                elif keys[pygame.K_SPACE] and (self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0):
+                    self.dash_length_timer.set_new_time(.5)
+                    self.update_values(-15, 15, 225)
+
                 else:
                     self.update_values(-5, 5, 225)
             else:
                 if keys[pygame.K_x]:
                     self.update_values(0, 2.5, 180)
-                elif keys[pygame.K_SPACE]:
-                    if self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0:
-                        self.update_values(0, 15, 180)
-                        self.dash_length_timer.set_new_time(.5)
+                elif keys[pygame.K_SPACE] and (self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0):
+                    self.dash_length_timer.set_new_time(.5)
+                    self.update_values(0, 15, 180)
+
                 else:
                     self.update_values(0, 5, 180)
         elif keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             if keys[pygame.K_x]:
                 self.update_values(2.5, 0, 90)
-            elif keys[pygame.K_SPACE]:
-                if self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0:
-                    self.update_values(15, 0, 90)
-                    self.dash_length_timer.set_new_time(.5)
+            elif keys[pygame.K_SPACE] and (self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0):
+                self.dash_length_timer.set_new_time(.5)
+                self.update_values(15, 0, 90)
+
             else:
                 self.update_values(5, 0, 90)
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
             if keys[pygame.K_x]:
                 self.update_values(-2.5, 0, 270)
-            elif keys[pygame.K_SPACE]:
-                if self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0:
-                    self.update_values(-15, 0, 270)
-                    self.dash_length_timer.set_new_time(.5)
+            elif keys[pygame.K_SPACE] and (self.dash_cooldown_timer.remaining_time is None or self.dash_cooldown_timer.remaining_time <= 0):
+                self.dash_length_timer.set_new_time(.5)
+                self.update_values(-15, 0, 270)
+
             else:
                 self.update_values(-5, 0, 270)
         else:
             self.update_values(0, 0, 0)
 
     def update_values(self, x_change, y_change, rotation):
-        #if self.dash_length_timer.remaining_time is None:
+
         try:
             if self.dash_length_timer.remaining_time <= 0:
-                self.dash_cooldown_timer.set_new_time(1)
+                self.dash_cooldown_timer.set_new_time(1.5)
+                self.dash_length_timer.remaining_time = None
         except:
-            print("DASH LENGTH ERROR")
+            print(f"Dash Length:{self.dash_length_timer.remaining_time}")
+            print(f"Dash Cooldown:{self.dash_cooldown_timer.remaining_time}")
 
         self.pos = (self.pos[0] + x_change, self.pos[1] + y_change)
         if self.pos[0] < 0:
@@ -174,8 +176,7 @@ class player:
                         self.health_cooldown_timer.set_new_time(2)
 
     def reduce_timers(self):
-        if self.health_cooldown_timer.count_down() == True:
-            print("Health Cooldown Timer Done")
+        self.health_cooldown_timer.count_down()
         if self.dash_cooldown_timer.count_down() == True:
             print("Dash Cooldown Timer Done")
         if self.dash_length_timer.count_down() == True:
